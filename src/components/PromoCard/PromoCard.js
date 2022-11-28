@@ -1,26 +1,45 @@
-import React, { useState } from "react";
-import { SvgIcon, Box, Button, Link, Badge, Typography } from "@mui/material";
+import React from "react";
+import { SvgIcon, Box, Link, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import PersonIcon from "@mui/icons-material/Person";
 
 import { ReactComponent as spriteImage } from "../../assets/images/spriteImage.svg";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
-    border: `2px solid #FFFFFF`,
-    backgroundColor: "#009639",
-    height: 15,
-    minWidth: 15,
-  },
+const StyledImg = styled("img")(({ theme }) => ({
+  width: "100%",
+  height: "247px",
+  borderRadius: "16px 16px 16px 100px",
+}));
+
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  textAlign: "center",
+  fontFamily: "Helvetica",
+  fontStyle: "normal",
+  fontWeight: 700,
+  fontSize: "14px",
+  margin: "10px 30px 10px 30px",
+  lineHeight: "20px",
+}));
+
+const StyledLink = styled(Link)(({ theme }) => ({
+  textAlign: "center",
+  fontFamily: "Helvetica",
+  fontStyle: "normal",
+  fontWeight: 700,
+  fontSize: "14px",
+  margin: "0px 104px 20px 103px",
+  lineHeight: "16px",
+  whiteSpace: "nowrap",
+  height: '20px',
 }));
 
 export default function PromoCard(props) {
-  const { icon, content, path, color } = props;
+  const { icon, image, title, path, color } = props;
 
   return (
     <Box
       sx={{
         width: "305px",
+        padding: "5px 5px 0px 5px",
         background: "#FFFFFF",
         border: "1.5px solid #ECEEEF",
         borderRadius: "20px",
@@ -30,41 +49,17 @@ export default function PromoCard(props) {
         alignItems: "center",
       }}
     >
-      <SvgIcon
-        component={icon}
-        style={{ height: "296px", width: "100%" }}
-        viewBox={"0 0 309 296"}
-      />
-      <Typography
-        sx={{
-          margin: "10px 30px 10px 30px",
-          textAlign: "center",
-          fontFamily: "Helvetica",
-          fontStyle: "normal",
-          fontWeight: 700,
-          fontSize: "14px",
-          lineHeight: "20px",
-        }}
-      >
-        {content}
-      </Typography>
-      <Link
-        href={path}
+      <StyledImg src={image} alt="" />
+      <StyledTypography dangerouslySetInnerHTML={{ __html: title }}></StyledTypography>
+      <StyledLink
+        href={`/campaign/${path}`}
         underline="none"
         sx={{
-          margin: "0px 104px 20px 103px",
-          textAlign: "center",
-          fontFamily: "Helvetica",
-          fontStyle: "normal",
-          fontWeight: 700,
-          fontSize: "14px",
-          lineHeight: "16px",
-          whiteSpace: "nowrap",
           color: color,
         }}
       >
         Daha Daha
-      </Link>
+      </StyledLink>
     </Box>
   );
 }

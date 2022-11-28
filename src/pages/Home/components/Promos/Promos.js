@@ -1,11 +1,30 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Paper, Button } from "@mui/material";
 
+import dahaAxios from "../../../../helpers/axios";
 import PromoCard from "../../../../components/PromoCard";
-import { fakePromosJSON } from "../../../../assets/datas/fakePromosJSON";
 
-export default function Promos (props) {
-  const { name, score, img } = props;
+export default function Promos() {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const response = await dahaAxios.get(`/promotions/list?Channel=PWA`);
+        console.log(response?.data)
+        setData(response?.data);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <Box
@@ -16,13 +35,14 @@ export default function Promos (props) {
         paddingLeft: "36px",
       }}
     >
-      {fakePromosJSON.map((data) => (
+      {data.map((item, i) => (
         <PromoCard
-          key={data.id}
-          icon={data?.img}
-          content={data?.content}
-          path={data?.path}
-          color={data?.color}
+          key={i}
+          image={item?.ImageUrl}
+          icon={item?.BrandIconUrl}
+          title={item?.Title}
+          path={`${item?.SeoName}/${item?.Id}`}
+          color={item?.PromotionCardColor}
         />
       ))}
     </Box>

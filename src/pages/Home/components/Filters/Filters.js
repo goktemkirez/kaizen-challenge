@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
+import dahaAxios from "../../../../helpers/axios";
 import FilterButton from "../../../../components/FilterButton";
-import { fakeFiltersJSON } from "../../../../assets/datas/fakeFiltersJSON";
 
-export default function Filters(props) {
-  const { name, score, img } = props;
+export default function Filters() {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const response = await dahaAxios.get(`/tags/list`);
+        setData(response?.data);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <Box
@@ -16,14 +34,15 @@ export default function Filters(props) {
         paddingLeft: "15px",
       }}
     >
-      {fakeFiltersJSON.map((data) => (
-        <FilterButton
-          key={data.id}
-          name={data?.title}
-          icon={data?.img}
-          path={data?.path}
-        />
-      ))}
+      {loading
+        ? null
+        : data.map((data) => (
+            <FilterButton
+              key={data.Id}
+              name={data?.Name}
+              icon={data?.IconUrl}
+            />
+          ))}
     </Box>
   );
 }

@@ -1,8 +1,8 @@
 import Detail from "./pages/Detail";
 
 export const ROUTES = {
-  DETAIL: "/detail",
-  DETAIL_BYID: "/detail:id",
+  DETAIL: "/campaign",
+  DETAIL_BYID: "/campaign/:seo/:id",
 };
 
 export const routes = [

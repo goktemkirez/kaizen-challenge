@@ -1,6 +1,14 @@
 import React from "react";
-import { Button, SvgIcon, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+
+const StyledImg = styled('img')(({ theme }) => ({
+  width: '24px',
+  height: '24px',
+  marginLeft: '2px',
+  borderRadius: '7.2px',
+}));
 
 export default function FilterButton(props) {
   const { name, icon, path } = props;
@@ -12,7 +20,7 @@ export default function FilterButton(props) {
         border: "1.5px solid #ECEEEF",
         borderRadius: "8px",
         height: "36px",
-        padding: "6px 6px 6px 0",
+        padding: "6px",
         display: "flex",
         alignItems: "center",
         color: "#1D1E1C",
@@ -27,10 +35,7 @@ export default function FilterButton(props) {
       }}
       variant="outlined"
       startIcon={
-        <SvgIcon
-          component={icon}
-          style={{ width: "24px", height: "24px", marginLeft: "10px" }}
-        />
+        <StyledImg src={icon} alt="" />
       }
       onClick={() => navigate(path)}
     >
