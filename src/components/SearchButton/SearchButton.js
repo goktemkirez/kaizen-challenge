@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, SvgIcon } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+
+import { ReactComponent as find } from "../../assets/images/find.svg";
 
 const StyledButton = styled(Button)(({ theme }) => ({
   border: "1.5px solid #ECEEEF",
@@ -21,22 +22,17 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const StyledImg = styled("img")(({ theme }) => ({
-  width: "24px",
-  height: "24px",
-  marginLeft: "2px",
-  borderRadius: "7.2px",
-}));
-
-export default function FilterButton(props) {
-  const { name, icon, path } = props;
-  const navigate = useNavigate();
-
+export default function SearchButton() {
   return (
     <StyledButton
       variant="outlined"
-      startIcon={<StyledImg src={icon} alt="" />}
-      onClick={() => navigate(path)}
+      startIcon={
+        <SvgIcon
+          component={find}
+          style={{ width: "24px", height: "24px" }}
+        />
+      }
+      onClick={() => alert("Search is not enabled for now.")}
     >
       <Typography
         sx={{
@@ -49,7 +45,7 @@ export default function FilterButton(props) {
         }}
         textAlign={"center"}
       >
-        {name}
+        Fırsat Bul
       </Typography>
     </StyledButton>
   );

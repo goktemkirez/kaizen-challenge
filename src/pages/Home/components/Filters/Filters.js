@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 
 import dahaAxios from "../../../../helpers/axios";
 import FilterButton from "../../../../components/FilterButton";
+import SearchButton from "../../../../components/SearchButton";
 
 export default function Filters() {
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,7 @@ export default function Filters() {
         paddingLeft: "15px",
       }}
     >
+      <SearchButton />
       {loading
         ? null
         : data.map((data) => (

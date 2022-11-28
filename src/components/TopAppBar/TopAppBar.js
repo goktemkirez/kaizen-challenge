@@ -5,6 +5,28 @@ import PersonIcon from "@mui/icons-material/Person";
 
 import { ReactComponent as daha } from "../../assets/images/daha.svg";
 
+const StyledButton = styled(Button)(({ theme }) => ({
+  borderRadius: "20px",
+  width: "91px",
+  height: "40px",
+  padding: "10px",
+  marginRight: "10px",
+  backgroundColor: "#F40000",
+  textTransform: "none",
+  display: "flex",
+  alignItems: "center",
+  fontFamily: "Helvetica",
+  fontStyle: "normal",
+  fontWeight: 700,
+  fontSize: "12px",
+  lineHeight: "13.8px",
+  letterSpacing: "-0.17px",
+  whiteSpace: "nowrap",
+  "&:hover": {
+    backgroundColor: "#F40000",
+  },
+}));
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     border: `2px solid #FFFFFF`,
@@ -25,34 +47,15 @@ export default function TopAppBar() {
         viewBox={"0 0 81 40"}
       />
       <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
-        <Button
+        <StyledButton
           variant="contained"
           sx={{
             visibility: loggedIn ? "hidden" : "visible",
-            borderRadius: "20px",
-            width: "91px",
-            height: "40px",
-            padding: "10px",
-            marginRight: "10px",
-            backgroundColor: "#F40000",
-            textTransform: "none",
-            display: "flex",
-            alignItems: "center",
-            fontFamily: "Helvetica",
-            fontStyle: "normal",
-            fontWeight: 700,
-            fontSize: "12px",
-            lineHeight: "13.8px",
-            letterSpacing: "-0.17px",
-            whiteSpace: "nowrap",
-            "&:hover": {
-              backgroundColor: "#F40000",
-            },
           }}
           onClick={() => setLoggedIn(true)}
         >
           Giriş Yap
-        </Button>
+        </StyledButton>
         <StyledBadge
           variant="standart"
           badgeContent=" "
@@ -64,7 +67,7 @@ export default function TopAppBar() {
             sx={{
               width: "40px",
               height: "40px",
-              backgroundColor: loggedIn ? "#F40000" : "#1D1E1C" ,
+              backgroundColor: loggedIn ? "#F40000" : "#1D1E1C",
               color: "#FFFFFF",
               "&:hover": {
                 backgroundColor: loggedIn ? "#F40000" : "#1D1E1C",

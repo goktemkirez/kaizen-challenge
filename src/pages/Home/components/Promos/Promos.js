@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Paper, Button } from "@mui/material";
+import { Box } from "@mui/material";
 
 import dahaAxios from "../../../../helpers/axios";
 import PromoCard from "../../../../components/PromoCard";
@@ -13,7 +13,7 @@ export default function Promos() {
       try {
         setLoading(true);
         const response = await dahaAxios.get(`/promotions/list?Channel=PWA`);
-        console.log(response?.data)
+        console.log(response?.data);
         setData(response?.data);
       } catch (error) {
         console.log("error", error);
@@ -35,16 +35,18 @@ export default function Promos() {
         paddingLeft: "36px",
       }}
     >
-      {data.map((item, i) => (
-        <PromoCard
-          key={i}
-          image={item?.ImageUrl}
-          icon={item?.BrandIconUrl}
-          title={item?.Title}
-          path={`${item?.SeoName}/${item?.Id}`}
-          color={item?.PromotionCardColor}
-        />
-      ))}
+      {loading
+        ? null
+        : data.map((item, i) => (
+            <PromoCard
+              key={i}
+              image={item?.ImageUrl}
+              icon={item?.BrandIconUrl}
+              title={item?.Title}
+              path={`${item?.SeoName}/${item?.Id}`}
+              color={item?.PromotionCardColor}
+            />
+          ))}
     </Box>
   );
 }

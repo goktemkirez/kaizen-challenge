@@ -1,8 +1,6 @@
 import React from "react";
-import { SvgIcon, Box, Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
-import { ReactComponent as spriteImage } from "../../assets/images/spriteImage.svg";
 
 const StyledImg = styled("img")(({ theme }) => ({
   width: "100%",
@@ -29,7 +27,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
   margin: "0px 104px 20px 103px",
   lineHeight: "16px",
   whiteSpace: "nowrap",
-  height: '20px',
+  height: "20px",
 }));
 
 export default function PromoCard(props) {
@@ -50,7 +48,21 @@ export default function PromoCard(props) {
       }}
     >
       <StyledImg src={image} alt="" />
-      <StyledTypography dangerouslySetInnerHTML={{ __html: title }}></StyledTypography>
+      <StyledImg
+        sx={{
+          position: "relative",
+          marginTop: "-50px",
+          left: "-110px",
+          width: "55px",
+          height: "55px",
+          borderRadius: "0 0 0 0",
+        }}
+        src={icon}
+        alt=""
+      ></StyledImg>
+      <StyledTypography
+        dangerouslySetInnerHTML={{ __html: title }}
+      ></StyledTypography>
       <StyledLink
         href={`/campaign/${path}`}
         underline="none"
